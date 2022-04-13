@@ -1,0 +1,87 @@
+﻿@model IEnumerable<ApplicationUser>
+
+@{
+    ViewData["Title"] = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br /><br />
+<form method="post">
+    <div class="border backgroundWhite">
+        <div class="row">
+            <div class="col-6">
+                <h2 class="text-info text-black">Users</h2>
+            </div>
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-6">
+                <button type="submit" class="btn btn-secondary text-white" asp-action="Lock">
+                    <i class="bi bi-lock"></i>
+                </button>
+                <button type="submit" class="btn btn-success text-white" asp-action="UnLock">
+                    <i class="bi bi-unlock"></i>
+                </button>
+                <button type="submit" class="btn btn-primary text-white" asp-action="Delete">
+                    <i class="bi bi-trash"></i>
+                </button>
+            </div>
+        </div>
+    <br/>
+    <div>
+        <table class="table table-striped border">
+            <tr class="table-secondary">
+                <th>
+                    <input class="form-check-input summary-check-box" type="checkbox" onchange="CheckAll();">
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.CreatedDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.LoginDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Status)
+                </th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    
+                    <td>
+                        <input class="form-check-input customer-check-box" name="selectedUsers" type="checkbox" onchange="Check();" id="@item.Id" value="@item.Id">
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.CreatedDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.LoginDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.Status)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+</form>
+
